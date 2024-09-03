@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/baseimage-kasmvnc:debianbookworm
+FROM chenchongbiao/baseimage-kasmvnc:deepinbeige
 
 # set version label
 ARG BUILD_DATE
@@ -7,7 +7,7 @@ LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DA
 LABEL maintainer="thelamer"
 
 # title
-ENV TITLE="Debian KDE"
+ENV TITLE="deepin dde"
 
 RUN \
   echo "**** add icon ****" && \
@@ -17,34 +17,41 @@ RUN \
   echo "**** install packages ****" && \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
-  apt-get install -y --no-install-recommends \
+  apt-get install -y \
     chromium \
-    chromium-l10n \
-    dolphin \
-    gwenview \
-    kde-config-gtk-style \
-    kdialog \
-    kfind \
-    khotkeys \
-    kio-extras \
-    knewstuff-dialog \
-    konsole \
-    ksystemstats \
-    kwin-addons \
-    kwin-x11 \
-    kwrite \
-    plasma-desktop \
-    plasma-workspace \
+    dde-api-proxy \
+    dde-application-manager \
+    dde-clipboard \
+    dde-desktop \
+    dde-shell \
+    dde-file-manager \
+    dde-launchpad \
+    dde-permission-manager \
+    dde-qt5integration \
+    dde-qt6integration \
+    dde-session\
+    dde-session-shell \
+    dde-session-ui \
+    deepin-desktop-base \
+    deepin-desktop-schemas \
+    deepin-desktop-theme \
+    deepin-gtk-theme \
+    deepin-icon-theme \
+    deepin-kwin-x11 \
+    deepin-terminal \
+    deepin-upgrade-manager \
+    deepin-wallpapers-nonfree \
+    startdde \
+    deepin-osconfig \
     qml-module-qt-labs-platform \
-    systemsettings && \
-  echo "**** application tweaks ****" && \
-  sed -i \
-    's#^Exec=.*#Exec=/usr/local/bin/wrapped-chromium#g' \
-    /usr/share/applications/chromium.desktop && \
-  echo "**** kde tweaks ****" && \
-  sed -i \
-    's/applications:org.kde.discover.desktop,/applications:org.kde.konsole.desktop,/g' \
-    /usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/config/main.xml && \
+    dde-desktop-plugins \
+    dde-disk-mount-plugin \
+    dde-file-manager-common-plugins \
+    dde-file-manager-daemon-plugins \
+    dde-file-manager-plugins \
+    dde-file-manager-preview-plugins \
+    dde-widgets \
+    deepin-anything-server && \
   echo "**** cleanup ****" && \
   apt-get autoclean && \
   rm -rf \
